@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	{% if msg %}
+	<b style="color: blue;">{{msg}}</b>
+	{% endif %}
+<form method="POST" action="{% url 'upload-details' %}" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+
+
+<tr>
+			<td>Product Id</td>
+			<td><input type="number" name="product_id" value="{{ product_details.product_id }}"></td>
+		</tr>
+
+		<tr>
+		<td>
+		<label for="product_name">Product Name:</label></td>
+        <td><select name="product_name" id="product_name">
+
+            {% for i in products %}
+                <option value="{{ i.product_name }}">{{ i.product_name }}</option>
+            {% endfor %}
+
+        
+    
+        </select></td><br>
+		<tr>
+			<td>Product Price</td>
+			<td><input type="number" name="product_price" value="{{ product_details.product_price }}"></td>
+		</tr>
+		<tr>
+			<td>Product Image</td>
+			<td><input type="file" name="product_image" id="product_image"></td></tr>
+			<tr><td>
+                    <img src="{{ product_details.product_image.url }}" style="height:50px; width:50px; border-radius:50%;">
+            	</td>
+		</tr>
+
+		<tr>
+			<td>Product Model</td>
+			<td><input type=text name="product_model" id="product_model" value="{{ product_details.product_model }}"></td>
+		</tr>
+		<tr>
+			<td>Product RAM</td>
+			<td><input type="text" name="product_ram" id="product_ram" value="{{ product_details.product_ram }}"></td>
+		</tr>
+
+		<tr>
+			
+			<td><input type="hidden" name="act" id="act" value="">
+				<button type="submit" onclick="document.getElementById('act').value='add';" class="btn btn-primary">Add </button>
+			
+			<button type="submit" onclick="document.getElementById('act').value='edit';" class="btn btn-primary">Edit</button>
+			
+		<button type="submit" onclick="document.getElementById('act').value='select';" class="btn btn-primary">Select</button>
+		
+		<button type="submit" onclick="document.getElementById('act').value='delete';" class="btn btn-primary">Delete</button>
+			</td>
+
+		</tr>
+
+	</table>
+</form>
+
+</body>
+</html>

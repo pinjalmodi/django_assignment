@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<form method="POST" action="{% url 'index' %}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<a href="{% url 'register' %}">Register</a>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<a href="{% url 'login' %}">Login</a>
+			</td>
+		</tr>
+
+	</table>
+</form>
+</body>
+</html>

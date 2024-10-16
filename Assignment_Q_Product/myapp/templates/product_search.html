@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Search</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="{% url 'product_search' %}">
+        {% csrf_token %}
+        <input type="text" name="query" value="{{ query }}" placeholder="Search for products...">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Product Results</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Model</th>
+            <th>Ram</th>
+        </tr>
+        {% for product in product_details %}
+            <tr>
+                <td>{{ product.product_name }}</td>
+                <td>{{ product.product_price }}</td>
+                <td><img src="{{ product.product_image.url }}"></td>
+                <td>{{ product.product_model }}</td>
+                <td>{{ product.product_ram }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No products found.</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

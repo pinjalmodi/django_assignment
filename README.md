@@ -1,1 +1,1 @@
-# django_assignment
+# django_assignmentThis repository includes some basic questions and answers about django. Also it has one program where admin can add,edit and delete the products and product manager can search the product.
